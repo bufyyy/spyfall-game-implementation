@@ -68,3 +68,10 @@ logs
 # Temporary files
 tmp/
 temp/
+
+# Railway
+.railway/
+
+# Vercel
+.vercel/
+

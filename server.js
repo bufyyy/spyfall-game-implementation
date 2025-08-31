@@ -9,13 +9,19 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
+    origin: ["http://localhost:3000", "https://spyfall-game-implementation.vercel.app", "https://spyfall-game-implementation-git-main-bufyyy.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Health check endpoint for Railway
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK', message: 'Spyfall server is running' });
+});
 
 // Store active rooms
 const rooms = new Map();
