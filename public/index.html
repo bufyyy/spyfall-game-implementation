@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spyfall Türkçe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Menu Screen -->
+    <div id="mainMenu" class="screen active">
+        <div class="container">
+            <div class="header">
+                <h1 class="title">🕵️ Spyfall Türkçe</h1>
+                <p class="subtitle">Kim casus?</p>
+            </div>
+            
+            <div class="menu-actions">
+                <button id="createRoomBtn" class="btn btn-primary">
+                    <span>🏠</span>
+                    Oda Oluştur
+                </button>
+                
+                <div class="join-room">
+                    <input type="text" id="roomCodeInput" placeholder="Oda Kodunu Girin" maxlength="6">
+                    <input type="text" id="playerNameInput" placeholder="Adınızı Girin" maxlength="20">
+                    <button id="joinRoomBtn" class="btn btn-secondary">
+                        <span>🚪</span>
+                        Odaya Katıl
+                    </button>
+                </div>
+            </div>
+            
+            <div class="rules">
+                <h3>📋 Oyun Kuralları</h3>
+              
+                <!-- Özet Bilgiler -->
+                <ul>
+                  <li><strong>Amaç:</strong> Casus olmayan oyuncuların (Vatandaşlar) casusu bulması; casusun ise yakalanmadan oyunu tamamlaması</li>
+                  <li><strong>Süre:</strong> 8 dakika (önerilen)</li>
+                  <li><strong>Oyuncu Sayısı:</strong> 4–8 kişi</li>
+                  <li><strong>Nasıl Oynanır:</strong> Oyuncular, lokasyonu açık etmeden soru-cevap üzerinden birbirlerini yoklar; Casus (Spy) konumu tahmin etmeye, Vatandaşlar (Citizens) casusu bulmaya çalışır</li>
+                </ul>
+              
+                <!-- Roller -->
+                <h4>🎭 Roller</h4>
+                <ul>
+                  <li><strong>Casus (Spy):</strong> Oyunun başında <em>konumu bilmez</em>. Soruları/cevapları dikkatle dinleyerek konumu anlamaya çalışır; şüphe çekmeden yanıt verip doğru anı kollayarak konumu tahmin edebilir.</li>
+                  <li><strong>Vatandaşlar (Citizens):</strong> Aynı konumu bilir. Konumu <em>doğrudan söylemeden</em> ipuçlarıyla birbirini tartar; tutarsız veya aşırı genel cevapları işaretleyip oylamada casusu açığa çıkarmaya çalışır.</li>
+                </ul>
+              
+                <!-- Oyun Akışı -->
+                <h4>▶️ Oyun Akışı</h4>
+                <ol>
+                  <li><strong>Rol Dağıtımı:</strong> Her oyuncuya gizlice rol verilir. Casus sadece casus olduğunu, Vatandaşlar ise ortak konumu görür.</li>
+                  <li><strong>Soru–Cevap Turları:</strong> Saat yönünde (veya belirlediğiniz sırayla) herkes bir kişiye konumla ilgili soru sorar. 
+                    <br><em>Örn:</em> “Burada gürültü normal mi?”, “Buraya gelirken özel bir kıyafet gerekir mi?”</li>
+                  <li><strong>Cevaplar:</strong> Sorulan kişi kısa ve tutarlı cevap verir. Çok genel cevaplar şüphe çekebilir; çok spesifik cevaplar ise konumu açığa çıkarabilir.</li>
+                  <li><strong>Suçlama &amp; Oylama:</strong> Her an bir oyuncu birini <em>Casus</em> olmakla suçlayabilir. Hemen oylama yapılır; <em>çoğunluk</em> onaylarsa suçlanan açığa çıkar.</li>
+                  <li><strong>Casusun Konum Tahmini:</strong> Casus, tur içinde uygun gördüğü anda veya sürenin sonunda tek hakla konumu tahmin edebilir.</li>
+                  <li><strong>Süre Yönetimi:</strong> Zaman bittiğinde tur durur ve son durum değerlendirilir.</li>
+                </ol>
+              
+                <!-- Oyun Sonu -->
+                <h4>🏁 Oyun Sonu</h4>
+                <ul>
+                  <li><strong>Vatandaşlar kazanır:</strong> Oylamada gerçek casus çoğunlukla açığa çıkarılırsa.</li>
+                  <li><strong>Casus kazanır:</strong> Konumu doğru tahmin ederse <em>veya</em> süre biter de yanlış kişi açığa çıkarılırsa (ya da casus hiç yakalanmazsa).</li>
+                </ul>
+              
+                <!-- İpuçları -->
+                <h4>💡 İpuçları</h4>
+                <ul>
+                  <li><strong>Vatandaşlar için:</strong>
+                    <ul>
+                      <li>Konumu ele vermeden bilgi test eden sorular sorun (kıyafet kuralı, güvenlik, yoğunluk, ses, açık/kapalı alan gibi).</li>
+                      <li>Şüpheli cevapları not edin; oylamada hızlı karar verirsiniz.</li>
+                      <li>Soruları sırayla ve kısa tutun ki herkes konuşabilsin.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Casus için:</strong>
+                    <ul>
+                      <li>Özel isimlerden kaçının; tutarlı ama “yuvarlak” cevaplar verin.</li>
+                      <li>Diğerlerinin ipuçlarını toplayın, erken tahmin risklidir.</li>
+                      <li>Bir–iki küçük detay yakalarsanız, cevaplarınızı onların etrafında döndürün.</li>
+                    </ul>
+                  </li>
+                </ul>
+              
+                <!-- Kısa Kısa Kurallar -->
+                <h4>⚠️ Kısa Kısa Kurallar</h4>
+                <ul>
+                  <li>Konumun <strong>adını</strong> asla söylemeyin; ipuçlarıyla konuşun.</li>
+                  <li>Suçlama olduğunda <strong>çoğunluk</strong> kararı geçerlidir; eşitlikte oyun devam eder.</li>
+                  <li>Casus, konumu doğru tahmin ederse anında kazanır.</li>
+                  <li>Varsayılan süre: 8 dakika; isterseniz lobide ayarlanabilir.</li>
+                </ul>
+              </div>
+              
+        </div>
+    </div>
+
+    <!-- Room Waiting Screen -->
+    <div id="waitingRoom" class="screen">
+        <div class="container">
+            <div class="room-header">
+                <h2>🏠 Oda: <span id="roomCodeDisplay"></span></h2>
+                <p class="room-status">Oyuncular bekleniyor...</p>
+            </div>
+            
+            <div class="players-list">
+                <h3>👥 Oyuncular (<span id="playerCount">0</span>/8)</h3>
+                <div id="playersList"></div>
+            </div>
+            
+            <!-- Game Settings (Host Only) -->
+            <div id="gameSettings" class="game-settings" style="display: none;">
+                <h3>🎮 Oyun Ayarları</h3>
+                
+                <div class="setting-group">
+                    <label>Kategori: <strong>Klasik Spyfall</strong></label>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 4px;">
+                        72 lokasyon ve rollerle orijinal Spyfall deneyimi
+                    </p>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="durationSelect">Süre:</label>
+                    <select id="durationSelect">
+                        <option value="300">5 dakika</option>
+                        <option value="480" selected>8 dakika</option>
+                        <option value="600">10 dakika</option>
+                        <option value="900">15 dakika</option>
+                    </select>
+                </div>
+                
+                <!-- Spy count removed - official Spyfall always has exactly 1 spy -->
+                
+                <!-- Role adherence option removed - will be added to rulebook later -->
+                
+                <div class="setting-group">
+                    <label for="categorySelect">Kategori:</label>
+                    <select id="categorySelect">
+                        <option value="Klasik">Klasik Spyfall</option>
+                        <option value="custom">Özel Kategori</option>
+                    </select>
+                    <button id="downloadKlasikBtn" class="btn btn-secondary">💾 Klasik İndir</button>
+                </div>
+                
+                <div id="customLocationControls" style="display: none;">
+                    <div class="setting-group">
+                        <label for="customCategoryName">Kategori Adı:</label>
+                        <input type="text" id="customCategoryName" placeholder="Kategori adı girin...">
+                    </div>
+                    
+                    <div class="setting-group">
+                        <button id="uploadLocationsBtn" class="btn btn-secondary">📁 Dosya Yükle</button>
+                        <input type="file" id="locationFileInput" accept=".json" style="display: none;">
+                        <button id="downloadLocationsBtn" class="btn btn-secondary">💾 İndir</button>
+                        <button id="editLocationsBtn" class="btn btn-secondary">✏️ Düzenle</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="room-actions">
+                <button id="startGameBtn" class="btn btn-primary" style="display: none;">
+                    🎮 Oyunu Başlat
+                </button>
+                <button id="leaveRoomBtn" class="btn btn-danger">
+                    🚪 Odadan Ayrıl
+                </button>
+            </div>
+            
+            <div class="room-info">
+                <p><strong>Min 4 oyuncu</strong> ile oyun başlatılabilir</p>
+                <p>Host oyunu başlatabilir</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <div class="container">
+            <!-- Game Header -->
+            <div class="game-header">
+                <div class="timer">
+                    <span class="timer-icon">⏱️</span>
+                    <span id="gameTimer">08:00</span>
+                </div>
+                <div class="room-code">
+                    Oda: <span id="gameRoomCode"></span>
+                </div>
+            </div>
+
+            <!-- Peek Role Button -->
+            <div class="peek-section">
+                <button id="peekRoleBtn" class="btn btn-secondary">
+                    👁️ Rolünü Gör
+                </button>
+            </div>
+
+            <!-- Game Info -->
+            <div id="gameInfo" class="game-info-panel">
+                <div class="info-item">
+                    <span class="info-label">Casus Sayısı:</span>
+                    1
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Kalan Casus:</span>
+                    <span id="remainingSpiesDisplay">1</span>
+                </div>
+            </div>
+
+            <!-- Locations Reference -->
+            <div id="spyLocations" class="locations-panel" style="display: none;">
+                <h4>🗺️ Olası Lokasyonlar <span id="categoryName" style="display: none;"></span></h4>
+                <div id="locationsList" class="locations-grid"></div>
+            </div>
+
+            <!-- Voting Status -->
+            <div id="votingStatus" class="voting-status" style="display: none;">
+                <h4>⚖️ Oylama Devam Ediyor</h4>
+                <p>Oy Sayısı: <span id="voteCount">0</span> / <span id="totalVotes">0</span></p>
+            </div>
+
+            <!-- Players in Game -->
+            <div class="game-players">
+                <h4>👥 Oyuncular</h4>
+                <div id="gamePlayersList"></div>
+            </div>
+
+            <!-- Game Actions -->
+            <div class="game-actions">
+                <button id="startVotingBtn" class="btn btn-warning">
+                    🚨 Suçlama Başlat
+                </button>
+                <button id="spyGuessBtn" class="btn btn-danger" style="display: none;">
+                    🎯 Lokasyonu Tahmin Et
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game End Screen -->
+    <div id="gameEndScreen" class="screen">
+        <div class="container">
+            <div class="game-result">
+                <h2 id="gameResultTitle"></h2>
+                <p id="gameResultDescription"></p>
+                
+                <div class="game-info">
+                    <p><strong>Lokasyon:</strong> <span id="finalLocation"></span></p>
+                    <p><strong>Casus:</strong> <span id="finalSpy"></span></p>
+                </div>
+                
+                <div class="scores-section">
+                    <h3>📊 Skorlar</h3>
+                    <div id="finalScores"></div>
+                </div>
+                
+                <div class="end-actions">
+                    <button id="newRoundBtn" class="btn btn-primary" style="display: none;">
+                        🔄 Yeni Round
+                    </button>
+                    <button id="backToMenuBtn" class="btn btn-secondary">
+                        🏠 Ana Menüye Dön
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Role Peek Modal -->
+    <div id="roleModal" class="modal">
+        <div class="modal-content">
+            <div id="roleContent"></div>
+            <div class="modal-actions">
+                <button id="closeRoleBtn" class="btn btn-secondary">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voting Modal -->
+    <div id="votingModal" class="modal">
+        <div class="modal-content">
+            <h3>⚖️ Kimi Elemek İstiyorsun?</h3>
+            <div id="votingPlayersList"></div>
+            <div class="modal-actions">
+                <button id="confirmVoteBtn" class="btn btn-warning">Oy Ver</button>
+                <button id="cancelVoteBtn" class="btn btn-secondary">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spy Guess Modal -->
+    <div id="spyGuessModal" class="modal">
+        <div class="modal-content">
+            <h3>🎯 Hangi Lokasyon?</h3>
+            <select id="locationGuessSelect">
+                <option value="">Lokasyon seçin...</option>
+            </select>
+            <div class="modal-actions">
+                <button id="confirmGuessBtn" class="btn btn-danger">Tahmin Et</button>
+                <button id="cancelGuessBtn" class="btn btn-secondary">İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Editor Modal -->
+    <div id="locationEditorModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <h3>✏️ Lokasyon Editörü</h3>
+            
+            <div class="location-editor">
+                <div class="editor-section">
+                    <h4>📍 Lokasyonlar</h4>
+                    <div class="location-controls">
+                        <input type="text" id="newLocationName" placeholder="Yeni lokasyon adı...">
+                        <button id="addLocationBtn" class="btn btn-primary">➕ Ekle</button>
+                    </div>
+                    <ul id="locationList" class="editable-list"></ul>
+                </div>
+                
+                <div class="editor-section" id="roleEditor">
+                    <h4>👥 Roller <span id="selectedLocationName" style="color: var(--accent-color);"></span></h4>
+                    <p id="roleInstructions" style="font-size: 0.9em; color: #666; margin-bottom: 10px;">
+                        Sol taraftan bir lokasyon seçin, ardından burada roller ekleyin.
+                    </p>
+                    <div class="role-controls">
+                        <input type="text" id="newRoleName" placeholder="Yeni rol adı...">
+                        <button id="addRoleBtn" class="btn btn-primary">➕ Ekle</button>
+                    </div>
+                    <ul id="roleList" class="editable-list"></ul>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="saveLocationsBtn" class="btn btn-success">💾 Kaydet</button>
+                <button id="cancelEditBtn" class="btn btn-secondary">❌ İptal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div id="themeToggle" class="theme-toggle">
+        <button id="themeBtn" class="theme-btn" title="Tema Değiştir">
+            🌙
+        </button>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="toast">
+        <span id="errorMessage"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
