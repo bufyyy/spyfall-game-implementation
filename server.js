@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://spyfall-game-implementation.vercel.app", "https://spyfall-game-implementation-git-main-bufyyy.vercel.app"],
+    origin: ["http://localhost:3000", "https://web-production-acde1.up.railway.app", "https://spyfall-game-implementation.vercel.app", "https://spyfall-game-implementation-git-main-bufyyy.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true
   }
