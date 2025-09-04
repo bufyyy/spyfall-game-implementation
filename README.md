@@ -1,6 +1,7 @@
 # 🕵️ Spyfall Türkçe
 
-Modern, web tabanlı, çok oyunculu Spyfall oyunu. Sosyal kesinti oyunu - Kim casus?
+Modern, web tabanlı, çok oyunculu Spyfall oyunu. Kim casus?
+
 Geçici olarak bu adresten oynayabilirsiniz: https://web-production-acde1.up.railway.app/
 
 ## 🎮 Oyun Hakkında
