@@ -1,6 +1,7 @@
 # 🕵️ Spyfall Türkçe
 
 Modern, web tabanlı, çok oyunculu Spyfall oyunu. Sosyal kesinti oyunu - Kim casus?
+Geçici olarak bu adresten oynayabilirsiniz: https://web-production-acde1.up.railway.app/
 
 ## 🎮 Oyun Hakkında
 
@@ -160,8 +161,9 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## 📞 İletişim
 
+E-Mail: bugrafiridinoglu@gmail.com
 Sorular veya öneriler için issue açabilirsiniz.
 
 ---
 
-**Spyfall Türkçe** - İlk Türkçe web tabanlı Spyfall oyunu! 🇹🇷
+**Spyfall Türkçe** - Türkçe web tabanlı Spyfall oyunu! 🇹🇷
